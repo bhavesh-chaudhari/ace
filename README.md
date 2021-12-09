@@ -26,11 +26,6 @@
 
 This is a github repository for the official website of Ace - The Entrepreneurship Cell [IIITN](https://twitter.com/iiitn_official?lang=en).
 
-## Getting Started
-
-- [`Contributing`](https://github.com/bhavesh-chaudhari/ace/blob/main/CONTRIBUTING.md)
-- [`License`](https://github.com/bhavesh-chaudhari/ace/blob/main/LICENSE)
-
 ### Built With 
 - React Js
 
