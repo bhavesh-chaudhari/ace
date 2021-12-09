@@ -43,11 +43,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 38px;
+    width: 35px;
     cursor: pointer;
 }
 
-.arrow-svg{
+.arrow-svg, .user-svg{
+    transform: scale(0.95);
     transition: all 0.2s ease;
 }
 
@@ -63,8 +64,6 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 5px;
     transition: all 0.2s ease;
-    height: 0;
-    height: auto;
     transform: scale3d(1,1,1) translate(0, 5px);
 }
 
@@ -90,7 +89,6 @@
 
 .login-signup-menu.hide{
     visibility: hidden;
-    height: 0;
     transform: scale3d(0, 0, 0);
 }
 
@@ -104,4 +102,14 @@
 
 .login-signup-menu .menu-arrow svg path{
     fill: white;
+}
+
+@media screen and (max-width:500px) {
+    .navbar{
+        width: 92%;
+    }
+
+    .navbar-links ul{
+        width: 165px;
+    }
 }
