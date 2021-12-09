@@ -1,0 +1,59 @@
+.card-container{
+    background: linear-gradient(108.61deg, #4E4E4E 3.94%, rgba(78, 78, 78, 0.8) 96.01%);
+    max-width: 380px;
+    padding: 1.5rem;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    font-family: "Open Sans", sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.15) 5px 5px 2.6px;
+}
+
+.card-container .card-content{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.card-content .member-image{
+    margin-right: 2rem;
+}
+
+.card-content .member-image img{
+    width: 100%;
+    height: auto;
+    min-width: 100px;
+    min-height: 100px;
+}
+
+.card-content .member-details{
+    display: flex;
+    flex-direction: column;
+}
+
+.member-details > div{
+    margin: 1rem 0;
+}
+
+.member-title h2{
+    color: #979797 ;
+}
+
+.member-name h3{
+    color: #F7C08A;
+}
+
+.member-link-icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.member-link-icons svg{
+    margin-right: 10px;
+}
+
+@media screen and (max-width:600px) {
+    .member-details > div{
+        margin: 0.6rem 0;
+    }
+}
