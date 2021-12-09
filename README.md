@@ -24,7 +24,7 @@
 
 ## About Project
 
-This is a github repository for the official website of Ace - The Entrepreneurship Cell [IIITN](https://twitter.com/iiitn_official?lang=en).
+This is a github repository for the official website of Ace - The Entrepreneurship Cell of [IIITN](https://twitter.com/iiitn_official?lang=en).
 
 ### Built With 
 - React Js
