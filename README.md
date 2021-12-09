@@ -14,7 +14,7 @@
   <h3 align="center">Ace</h3>
 
   <p align="center">
-    The Entrepreneurship Cell IIITN
+    The Entrepreneurship Cell of IIITN
     <br />
     <a href="https://github.com/bhavesh-chaudhari/ace"><strong>Visit Website »</strong></a>
   </p>
@@ -24,12 +24,7 @@
 
 ## About Project
 
-This is a github repository for the official website of Ace - The Entrepreneurship Cell [IIITN](https://twitter.com/iiitn_official?lang=en).
-
-## Getting Started
-
-- [`Contributing`](https://github.com/bhavesh-chaudhari/ace/blob/main/CONTRIBUTING.md)
-- [`License`](https://github.com/bhavesh-chaudhari/ace/blob/main/LICENSE)
+This is a github repository for the official website of Ace - The Entrepreneurship Cell of [IIITN](https://twitter.com/iiitn_official?lang=en).
 
 ### Built With 
 - React Js
