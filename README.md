@@ -14,7 +14,7 @@
   <h3 align="center">Ace</h3>
 
   <p align="center">
-    The Entrepreneurship Cell IIITN
+    The Entrepreneurship Cell of IIITN
     <br />
     <a href="https://github.com/bhavesh-chaudhari/ace"><strong>Visit Website »</strong></a>
   </p>
