@@ -1,0 +1,107 @@
+.navbar-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background: #333333;
+    min-height: 3rem;
+    font-family: "Raleway", sans-serif;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+}
+
+.navbar-links ul{
+    display: flex;
+    width: 180px;
+    justify-content: space-between;
+    list-style-type: none;
+}
+
+.navbar-links ul li{
+    font-size: larger;
+    font-weight: 400;
+}
+
+.navbar-links a{
+    text-decoration: none;
+    color: white;
+}
+
+.navbar-links .active{
+    color: #E2B07E;
+}
+
+.navbar-profile{
+    position: relative;
+}
+
+.navbar-profile .user-profile{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 38px;
+    cursor: pointer;
+}
+
+.arrow-svg{
+    transition: all 0.2s ease;
+}
+
+.arrow-svg.open{
+    transform: rotateZ(180deg);
+}
+
+.login-signup-menu{
+    background: white;
+    position: absolute;
+    right: -10px;
+    padding: 0.5rem 0.8rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    height: 0;
+    height: auto;
+    transform: scale3d(1,1,1) translate(0, 5px);
+}
+
+.login-signup-menu a{
+    text-decoration: none;
+}
+
+.login-signup-menu .main-menu{
+    min-width: 80px;
+    min-height: 50px;
+}
+
+.login-signup-menu ul{
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+.login-signup-menu ul li{
+    margin-bottom: 0.5rem;
+    color: #000000;
+}
+
+.login-signup-menu.hide{
+    visibility: hidden;
+    height: 0;
+    transform: scale3d(0, 0, 0);
+}
+
+.login-signup-menu .menu-arrow{
+    position: absolute;
+    right: 10px;
+    top: 0;
+    z-index: 1000;
+    transform: rotateZ(180deg) translate(0px, 10px) scale(1.5);
+}
+
+.login-signup-menu .menu-arrow svg path{
+    fill: white;
+}
