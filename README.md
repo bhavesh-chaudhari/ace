@@ -27,7 +27,7 @@
 This is a github repository for the official website of Ace - The Entrepreneurship Cell of [IIITN](https://twitter.com/iiitn_official?lang=en).
 
 ### Built With 
-- React Js
+- MERN Stack
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
