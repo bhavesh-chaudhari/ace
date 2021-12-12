@@ -1,0 +1,36 @@
+{
+  "name": "ace-cell",
+  "version": "1.0.0",
+  "description": "[![Contributors][contributors-shield]][contributors-url]\r [![Forks][forks-shield]][forks-url]\r [![Stargazers][stars-shield]][stars-url]\r [![Issues][issues-shield]][issues-url]\r [![LinkedIn][linkedin-shield]][linkedin-url]",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhavesh-chaudhari/ace.git"
+  },
+  "author": "Bhavesh Chaudhari <bhic2030@gmail.com> (https://github.com/bhavesh-chaudhari)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhavesh-chaudhari/ace/issues"
+  },
+  "homepage": "https://github.com/bhavesh-chaudhari/ace#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mongoose": "^6.1.1",
+    "passport": "^0.5.0",
+    "passport-google-oauth2": "^0.2.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
