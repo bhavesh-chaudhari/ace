@@ -56,7 +56,7 @@ i {
 .head-form {
   font-size: 24px;
   color: #4e4e4e;
-  width: 50%;
+  width: 70%;
   margin: 0 auto;
   text-align: center;
   margin-top: 10px;
@@ -68,6 +68,7 @@ i {
   font-size: 14px;
   cursor: pointer;
   text-decoration: underline;
+  color: #4e4e4e;
 }
 
 .error {
@@ -77,4 +78,52 @@ i {
   font-family: "Josefin Sans", sans-serif;
   letter-spacing: -0.04em;
   text-align: right;
+}
+
+@media only screen and (max-width: 480px) {
+  label {
+    font-size: 14px;
+    word-wrap: break-word;
+  }
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    height: 26px;
+    font-size: 12px;
+    margin-top: 6 px;
+  }
+  .formbutton {
+    height: 36px;
+    font-size: 13px;
+  }
+  i {
+    margin: 2px 8px 0 0;
+  }
+  .head-form {
+    font-size: 18px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    width: 60%;
+  }
+  .error {
+    font-size: 11px;
+  }
+  .forgot-pass {
+    font-size: 11px;
+  }
+  .form {
+    margin: 10px 25px 10px 25px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .sign {
+    display: none;
+  }
+  .head-form {
+    width: 65%;
+    font-size: 16px;
+  }
 }

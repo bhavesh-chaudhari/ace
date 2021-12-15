@@ -73,6 +73,8 @@ const Login = () => {
                     <i className="fab fa-google fa-lg"></i>
                     <span className='sign'>Login using google</span>
                 </button>
+                <br />
+                <br />
             </form>
         </div>
     )

@@ -119,3 +119,21 @@ button {
   right: 280px;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 480px) {
+  .container {
+    width: 60vw;
+    height: 20vh;
+  }
+  .tabs {
+    font-size: 14px;
+  }
+  .close-btn {
+    top: 30px;
+    right: 20px;
+    font-size: 18px;
+  }
+  .content {
+    padding-bottom: 10px;
+  }
+}
