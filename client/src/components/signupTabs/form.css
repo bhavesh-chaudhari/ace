@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap");
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.form {
+  margin: 10px 35px 10px 35px;
+}
+
+label {
+  font-size: 16px;
+  color: #4e4e4e;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  height: 30px;
+  font-size: 14px;
+  margin-top: 8px;
+  border: 1px solid #c5c5c5;
+  color: #4e4e4e;
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid #f7c08a;
+}
+
+.formbutton {
+  width: 100%;
+  background-color: #f7c08a;
+  height: 40px;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #4e4e4e;
+  text-align: center;
+  cursor: pointer;
+}
+
+.formbutton:hover {
+  background-color: #e2b07e;
+}
+
+i {
+  margin: 2px 14px 0 0;
+}
+
+.head-form {
+  font-size: 24px;
+  color: #4e4e4e;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.forgot-pass {
+  float: right;
+  margin-top: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+  color: #4e4e4e;
+}
+
+.error {
+  font-size: 15px;
+  display: inline-block;
+  color: #e2b07e;
+  font-family: "Josefin Sans", sans-serif;
+  letter-spacing: -0.04em;
+  text-align: right;
+}
+
+@media only screen and (max-width: 480px) {
+  label {
+    font-size: 14px;
+    word-wrap: break-word;
+  }
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    height: 26px;
+    font-size: 12px;
+    margin-top: 6 px;
+  }
+  .formbutton {
+    height: 36px;
+    font-size: 13px;
+  }
+  i {
+    margin: 2px 8px 0 0;
+  }
+  .head-form {
+    font-size: 18px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    width: 60%;
+  }
+  .error {
+    font-size: 11px;
+  }
+  .forgot-pass {
+    font-size: 11px;
+  }
+  .form {
+    margin: 10px 25px 10px 25px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .sign {
+    display: none;
+  }
+  .head-form {
+    width: 65%;
+    font-size: 16px;
+  }
+}
