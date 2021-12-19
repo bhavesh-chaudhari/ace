@@ -8,20 +8,14 @@
   padding: 0;
 }
 
-body {
-  background: #333333;
-}
-
 .container {
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 33vw;
-  height: 68vh;
-  background: #4e4e4e;
-  margin: 65px auto 0;
+  width: 90vw;
+  min-height: 80vh;
+  max-width: 500px;
   word-break: break-all;
-  /* border: 1px solid rgba(0, 0, 0, 0.274); */
   font-family: "Raleway", sans-serif;
 }
 
@@ -51,35 +45,9 @@ body {
   color: #333333;
 }
 
-.inactive-tabs-signup:hover {
-  border: 6px solid #333333;
-  padding: 8px;
-  box-shadow: 2px -2px 4px 0px #00000040 inset;
-  border-bottom: 0;
-  border-left: 0;
-  font-size: 16px;
+.inactive-tabs:hover{
+  background: #474747;
 }
-
-.inactive-tabs-login:hover {
-  border: 6px solid #333333;
-  padding: 8px;
-  box-shadow: 2px 0 4px -2px #00000040 inset;
-  border-bottom: 0;
-  border-right: 0;
-  font-size: 16px;
-}
-
-/* .active-tabs::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% + 2px);
-  height: 5px;
-  background: rgb(88, 147, 241);
-} */
 
 button {
   border: none;
@@ -112,28 +80,13 @@ button {
 }
 
 .close-btn {
-  color: #f7c08a;
-  font-size: 22px;
-  position: absolute;
-  top: 30px;
-  right: 280px;
-  cursor: pointer;
+  position: fixed;
+  top: 2rem;
+  right: 4rem;
+  font-size: 2rem;
 }
 
-@media only screen and (max-width: 480px) {
-  .container {
-    width: 60vw;
-    height: 20vh;
-  }
-  .tabs {
-    font-size: 14px;
-  }
-  .close-btn {
-    top: 30px;
-    right: 20px;
-    font-size: 18px;
-  }
-  .content {
-    padding-bottom: 10px;
-  }
+.close-btn a{
+  text-decoration: none;
+  color: #f7c08a;
 }

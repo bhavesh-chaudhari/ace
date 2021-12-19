@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import "./Navbar.css"
-import { NavLink } from "react-router-dom"
+import {  NavLink, Link } from "react-router-dom"
 import { ReactComponent as UserSvg } from "./assets/user.svg";
 import { ReactComponent as DownArrowSvg } from "./assets/downArrow.svg";
 import OutsideAlerter from '../outsideAlerter/OutsideAlerter';
@@ -43,12 +43,12 @@ const Navbar = () => {
             >
               <div className="main-menu">
                 <ul>
-                  <a href="">
-                    <li>Login</li>
-                  </a>
-                  <a href="">
-                    <li>Sign-up</li>
-                  </a>
+                  <Link to="/register">
+                    <li>Dashboard</li>
+                  </Link>
+                  <Link to="/register">
+                    <li>Register</li>
+                  </Link>
                 </ul>
               </div>
               <div className="menu-arrow">

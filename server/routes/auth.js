@@ -1,5 +1,7 @@
 import express from "express"
+import { login, signup } from "../controllers/auth.js"
 
 const router = app.Router()
 
-// continue later...
+router.post("/login", login)
+router.post("/signup", signup)
