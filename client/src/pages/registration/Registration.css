@@ -1,0 +1,13 @@
+.registration-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #333333;
+}
+
+@media screen and (max-width:600px) {
+    .registration-container{
+        align-items: center;
+    }
+}

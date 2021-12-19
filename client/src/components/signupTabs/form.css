@@ -8,12 +8,19 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+.main-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
 .form {
-  margin: 10px 35px 10px 35px;
+  width: 80%;
 }
 
 label {
-  font-size: 16px;
+  font-size: 1rem;
   color: #4e4e4e;
 }
 
@@ -26,6 +33,7 @@ input[type="password"] {
   font-size: 14px;
   margin-top: 8px;
   border: 1px solid #c5c5c5;
+  padding: 8px;
   color: #4e4e4e;
 }
 
