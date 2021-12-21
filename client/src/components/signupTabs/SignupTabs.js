@@ -21,7 +21,7 @@ const SignupTabs = () => {
           <BsBackspaceFill></BsBackspaceFill>
         </Link>
       </div>
-      <div className="container">
+      <div className="register-container">
         <div className="bloc-tabs">
           <button
             className={

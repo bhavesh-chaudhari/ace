@@ -27,6 +27,10 @@ const UserSchema = new mongoose.Schema(
       required: [true, "Please provide a password"],
       minlength: [6, "Password length must be greater than 6"],
     },
+    coins:{
+      type: Number,
+      default: 0
+    }
   },
   { timestamps: true }
 );

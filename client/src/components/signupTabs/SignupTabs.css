@@ -8,7 +8,7 @@
   padding: 0;
 }
 
-.container {
+.register-container {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -45,33 +45,40 @@
   color: #333333;
 }
 
-.inactive-tabs:hover{
+.inactive-tabs:hover {
   background: #474747;
 }
 
 button {
   border: none;
 }
+
 .content-tabs {
-  flex-grow: 1;
+  height: auto;
 }
-.content {
+
+.register-container .content {
   background: #f5f5f5;
   padding: 20px;
   width: 100%;
   height: 100%;
   display: none;
 }
-.content h2 {
+
+.register-container .content.active-content{
+  display: block;
+}
+
+.register-container .content h2 {
   padding: 0px 0 5px 0px;
 }
-.content hr {
+.register-container .content hr {
   width: 100px;
   height: 2px;
   background: #222;
   margin-bottom: 5px;
 }
-.content p {
+.register-container .content p {
   width: 100%;
   height: 100%;
 }
@@ -86,7 +93,7 @@ button {
   font-size: 2rem;
 }
 
-.close-btn a{
+.close-btn a {
   text-decoration: none;
   color: #f7c08a;
 }

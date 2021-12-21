@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import cors from "cors"
 import CONNECT_DB from "./db/connect.js";
+import eventsRouter from "./routes/events.js"
 
 // initialize app
 const app = express();
@@ -18,10 +19,7 @@ app.use(
   })
 );
 
-// test route
-app.get("/", (req, res)=>{
-    res.send("ace server initiation")
-})
+app.use("/api/v1/events", eventsRouter)
 
 // read environment variables from .env
 const PORT = process.env.PORT || 5000;
