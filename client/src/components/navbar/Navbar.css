@@ -6,6 +6,9 @@
     background: #333333;
     min-height: 3rem;
     font-family: "Raleway", sans-serif;
+    position: fixed;
+    width: 100%;
+    top: 0;
 }
 
 .navbar{
@@ -36,7 +39,13 @@
 }
 
 .navbar-profile{
+    display: flex;
+    justify-content: center;
     position: relative;
+    background: #C5C5C5;
+    border-radius: 3px;
+    width: 50px;
+    padding: 2px 0;
 }
 
 .navbar-profile .user-profile{
@@ -50,6 +59,7 @@
 .arrow-svg, .user-svg{
     transform: scale(0.95);
     transition: all 0.2s ease;
+    fill: black;
 }
 
 .arrow-svg.open{
@@ -64,7 +74,7 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 5px;
     transition: all 0.2s ease;
-    transform: scale3d(1,1,1) translate(0, 5px);
+    transform: scale3d(1,1,1) translate(0, 24px);
 }
 
 .login-signup-menu a{
@@ -97,7 +107,7 @@
     right: 10px;
     top: 0;
     z-index: 1000;
-    transform: rotateZ(180deg) translate(0px, 10px) scale(1.5);
+    transform: rotateZ(180deg) translate(7px, 10px) scale(1.5);
 }
 
 .login-signup-menu .menu-arrow svg path{

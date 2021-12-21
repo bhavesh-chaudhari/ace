@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 90vw;
+  min-height: 80vh;
+  max-width: 500px;
+  word-break: break-all;
+  font-family: "Raleway", sans-serif;
+}
+
+.bloc-tabs {
+  display: flex;
+}
+.tabs {
+  padding: 14px;
+  text-align: center;
+  color: #f7c08a;
+  font-size: 18px;
+  width: 50%;
+  background: #4e4e4e;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+  box-sizing: content-box;
+  position: relative;
+  outline: none;
+}
+.tabs:not(:last-child) {
+  border-right: 1px solid rgba(0, 0, 0, 0.274);
+}
+
+.active-tabs {
+  background: #f5f5f5;
+  border-bottom: 1px solid transparent;
+  color: #333333;
+}
+
+.inactive-tabs:hover {
+  background: #474747;
+}
+
+button {
+  border: none;
+}
+
+.content-tabs {
+  height: auto;
+}
+
+.register-container .content {
+  background: #f5f5f5;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.register-container .content.active-content{
+  display: block;
+}
+
+.register-container .content h2 {
+  padding: 0px 0 5px 0px;
+}
+.register-container .content hr {
+  width: 100px;
+  height: 2px;
+  background: #222;
+  margin-bottom: 5px;
+}
+.register-container .content p {
+  width: 100%;
+  height: 100%;
+}
+.active-content {
+  display: block;
+}
+
+.close-btn {
+  position: fixed;
+  top: 2rem;
+  right: 4rem;
+  font-size: 2rem;
+}
+
+.close-btn a {
+  text-decoration: none;
+  color: #f7c08a;
+}
