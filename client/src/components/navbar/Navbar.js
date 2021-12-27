@@ -1,19 +1,25 @@
-import React, { useRef, useState, useEffect } from 'react'
-import "./Navbar.css"
-import {  NavLink, Link } from "react-router-dom"
+import React, { useRef, useState, useEffect } from "react";
+import "./Navbar.css";
+import { NavLink, Link } from "react-router-dom";
 import { ReactComponent as UserSvg } from "./assets/user.svg";
 import { ReactComponent as DownArrowSvg } from "./assets/downArrow.svg";
-import OutsideAlerter from '../outsideAlerter/OutsideAlerter';
+import OutsideAlerter from "../outsideAlerter/OutsideAlerter";
+import { useGlobalContext } from "../../context/appContext";
 
 const Navbar = () => {
+  const [open, setIsOpen] = useState(false);
 
-  const [open, setIsOpen] = useState(false)
+  const { user } = useGlobalContext();
 
-  console.log("check")
+  console.log("check");
 
-  const close = ()=>{
-    setIsOpen(false)
-  }
+  const close = () => {
+    setIsOpen(false);
+  };
+
+  const logout = () => {
+    window.open("http://localhost:5000/api/v1/auth/logout", "_self");
+  };
 
   return (
     <div className="navbar-container">
@@ -28,7 +34,7 @@ const Navbar = () => {
             </NavLink>
           </ul>
         </div>
-        <OutsideAlerter action={close} >
+        <OutsideAlerter action={close}>
           <div className="navbar-profile">
             <div onClick={() => setIsOpen(!open)} className="user-profile">
               <div className="user-svg">
@@ -43,12 +49,20 @@ const Navbar = () => {
             >
               <div className="main-menu">
                 <ul>
-                  <Link to="/register">
-                    <li>Dashboard</li>
-                  </Link>
-                  <Link to="/register">
-                    <li>Register</li>
-                  </Link>
+                  {user ? (
+                    <a>
+                      <li onClick={logout}>logout</li>
+                    </a>
+                  ) : (
+                    <>
+                      <Link to="/register">
+                        <li>Dashboard</li>
+                      </Link>
+                      <Link to="/register">
+                        <li>Register</li>
+                      </Link>
+                    </>
+                  )}
                 </ul>
               </div>
               <div className="menu-arrow">
@@ -60,6 +74,6 @@ const Navbar = () => {
       </nav>
     </div>
   );
-}
+};
 
-export default Navbar
+export default Navbar;

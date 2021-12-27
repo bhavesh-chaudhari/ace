@@ -83,8 +83,10 @@ i {
   font-size: 15px;
   display: inline-block;
   color: #e2b07e;
+  color: red;
   font-family: "Josefin Sans", sans-serif;
   letter-spacing: -0.04em;
+  margin-top: 5px;
   text-align: right;
 }
 

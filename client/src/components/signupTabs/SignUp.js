@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./form.css";
+import axios from "axios"
 
 const SignUp = () => {
   const initialValues = {
     name: "",
     number: "",
     email: "",
-    pass: "",
+    password: "",
     cnfmpass: "",
   };
   const [formValues, setformValues] = useState(initialValues);
@@ -16,18 +17,30 @@ const SignUp = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setformValues({ ...formValues, [name]: value });
+    console.log(formValues)
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setformErrors(validate(formValues));
     setIsSubmit(true);
+    console.log(formValues)
+    if(formErrors.length === 0 ){
+      axios({
+        method: "POST",
+        data: formValues,
+        url: "http://localhost:5000/api/v1/auth/signup",
+        withCredentials: true
+      }).then((res)=>console.log(res))
+    }
+    
   };
 
   useEffect(() => {
-    console.log(formErrors);
+    // console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(formValues);
+      setformErrors(validate(formValues));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formErrors]);
@@ -48,20 +61,24 @@ const SignUp = () => {
     } else if (!regex.test(values.email)) {
       error.email = "*This is not a valid email";
     }
-    if (!values.pass) {
-      error.pass = "*You must enter a password";
+    if (!values.password) {
+      error.password = "*You must enter a password";
     }
     if (!values.cnfmpass) {
       error.cnfmpass = "*You must confirm your password";
-    } else if (String(values.cnfmpass) !== String(values.pass)) {
+    } else if (String(values.cnfmpass) !== String(values.password)) {
       error.cnfmpass = "*Your password does not match";
     }
 
     return error;
   };
 
+  const googleLogin = () => {
+    window.open("http://localhost:5000/api/v1/auth/google", "_self");
+  };
+
   return (
-    <div className="main-container" >
+    <div className="main-container">
       <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input
@@ -93,15 +110,16 @@ const SignUp = () => {
         />
         <p className="error">{formErrors.email}</p>
         <br />
-        <label htmlFor="pass">Password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
-          name="pass"
-          id="pass"
-          value={formValues.pass}
+          name="password"
+          id="password"
+          value={formValues.password}
           onChange={handleChange}
+          autoComplete="new-password"
         />
-        <p className="error">{formErrors.pass}</p>
+        <p className="error">{formErrors.password}</p>
         <br />
         <label htmlFor="cnfmpass">Confirm Password</label>
         <input
@@ -118,7 +136,7 @@ const SignUp = () => {
         </button>
         <br />
         <br />
-        <button className="formbutton">
+        <button onClick={googleLogin} className="formbutton">
           <i className="fab fa-google fa-lg"></i>
           <span className="sign">Sign Up using google</span>
         </button>

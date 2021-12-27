@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Login = () => {
   const initialValues = { email: "", pass: "" };
@@ -17,8 +18,12 @@ const Login = () => {
     setIsSubmit(true);
   };
 
+  const googleLogin = () => {
+    window.open("http://localhost:5000/api/v1/auth/google", "_self");
+  };
+
   useEffect(() => {
-    console.log(formErrors);
+    // console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(formValues);
     }
@@ -40,7 +45,7 @@ const Login = () => {
   };
 
   return (
-    <div className="main-container" >
+    <div className="main-container">
       <div className="head-form">Login at Ace</div>
       <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
@@ -60,6 +65,7 @@ const Login = () => {
           id="pass"
           value={formValues.pass}
           onChange={handleChange}
+          autoComplete="new-password"
         />
         <p className="error">{formErrors.pass}</p>
         <br />
@@ -71,7 +77,7 @@ const Login = () => {
         <br />
         <br />
         <br />
-        <button className="formbutton">
+        <button onClick={googleLogin} type="button" className="formbutton">
           <i className="fab fa-google fa-lg"></i>
           <span className="sign">Login using google</span>
         </button>
