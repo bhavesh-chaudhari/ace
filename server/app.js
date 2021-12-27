@@ -1,15 +1,21 @@
-import express from "express"
-import dotenv from "dotenv"
-import cors from "cors"
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
 import CONNECT_DB from "./db/connect.js";
-import eventsRouter from "./routes/events.js"
+import eventsRouter from "./routes/events.js";
+import authRouter from "./routes/auth.js";
+import session from "express-session";
+import cookieParser from "cookie-parser";
+import passport from "passport";
+import passportStrategy from "./config/passportConfig.js";
+import { ensureAuth, ensureGuest } from "./middlewares/auth.js";
 
 // initialize app
 const app = express();
 app.use(express.json());
 
 // configure dotenv
-dotenv.config({path:"./config/.env"});
+dotenv.config({ path: "./config/.env" });
 
 // cors
 app.use(
@@ -19,7 +25,31 @@ app.use(
   })
 );
 
-app.use("/api/v1/events", eventsRouter)
+// express session
+app.use(
+  session({
+    secret: "_cold_",
+    resave: false,
+    saveUninitialized: true,
+    // cookie: { secure: true },
+  })
+);
+
+// cookie parser (use the secret from express session)
+app.use(cookieParser("_cold_"));
+
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
+passportStrategy(passport);
+
+app.get("/", (req, res)=>{
+  console.log(req.user)
+  res.send("slash wow")
+})
+
+app.use("/api/v1/events", ensureAuth, eventsRouter);
+app.use("/api/v1/auth", authRouter);
 
 // read environment variables from .env
 const PORT = process.env.PORT || 5000;

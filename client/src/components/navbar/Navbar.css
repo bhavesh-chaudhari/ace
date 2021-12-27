@@ -83,7 +83,6 @@
 
 .login-signup-menu .main-menu{
     min-width: 80px;
-    min-height: 50px;
 }
 
 .login-signup-menu ul{
@@ -95,6 +94,11 @@
 .login-signup-menu ul li{
     margin-bottom: 0.5rem;
     color: #000000;
+}
+
+.main-menu > ul:nth-child(1) > a:nth-child(1) > li:nth-child(1){
+    margin-bottom: 0;
+    cursor: pointer;
 }
 
 .login-signup-menu.hide{
