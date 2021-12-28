@@ -21,12 +21,8 @@ router.get(
 );
 
 router.get("/authenticatedUser", (req, res) => {
-  try {
-    if (req.user) {
-      res.status(200).json({ loggedInUser: req.user });
-    }
-  } catch (error) {
-    res.status(400).json(error);
+  if(req.user){
+    res.status(200).json({ loggedInUser: req.user });
   }
 });
 

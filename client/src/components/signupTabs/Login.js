@@ -1,34 +1,38 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useGlobalContext } from "../../context/appContext";
 
 const Login = () => {
-  const initialValues = { email: "", pass: "" };
+  const initialValues = { email: "", password: "" };
   const [formValues, setformValues] = useState(initialValues);
   const [formErrors, setformErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+
+  const {login} = useGlobalContext()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setformValues({ ...formValues, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log("handle submit func")
     e.preventDefault();
     setformErrors(validate(formValues));
     setIsSubmit(true);
+    console.log(isSubmit)
+    console.log(Object.keys(formErrors).length);
   };
 
   const googleLogin = () => {
     window.open("http://localhost:5000/api/v1/auth/google", "_self");
   };
 
-  useEffect(() => {
-    // console.log(formErrors);
+  useEffect( async ()=>{
+    console.log("lol isSubmit")
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
+      login(formValues)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formErrors]);
+  }, [isSubmit])
 
   const validate = (values) => {
     const error = {};
@@ -38,8 +42,8 @@ const Login = () => {
     } else if (!regex.test(values.email)) {
       error.email = "*This is not a valid email";
     }
-    if (!values.pass) {
-      error.pass = "*You must enter a password";
+    if (!values.password) {
+      error.password = "*You must enter a password";
     }
     return error;
   };
@@ -54,20 +58,22 @@ const Login = () => {
           name="email"
           id="email"
           value={formValues.email}
-          onChange={handleChange}
+          onChange={(e) =>
+            setformValues({ ...formValues, email: e.target.value })
+          }
         />
         <p className="error">{formErrors.email}</p>
         <br />
         <label htmlFor="pass">Password</label>
         <input
           type="password"
-          name="pass"
-          id="pass"
-          value={formValues.pass}
+          name="password"
+          id="password"
+          value={formValues.password}
           onChange={handleChange}
           autoComplete="new-password"
         />
-        <p className="error">{formErrors.pass}</p>
+        <p className="error">{formErrors.password}</p>
         <br />
         <button className="formbutton" type="submit">
           Login

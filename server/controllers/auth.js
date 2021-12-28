@@ -5,17 +5,21 @@ import passport from "passport";
 const CLIENT_URL = "http://localhost:3000/register";
 
 export const login = (req, res, next) => {
-    passport.authenticate("local", (err, user) => {
-      if (err) throw err;
-      if (!user) res.send("No user exists");
-      else {
-        req.login(user, (err) => {
-          if (err) throw err;
-          res.send("Success Authenticated");
-          console.log(req.user);
-        });
-      }
-    })(req, res, next);
+   try {
+      passport.authenticate("local", (err, user) => {
+        if (err) throw err;
+        if (!user) res.status(400).json({ message: "no such user exists" });
+        else {
+          req.login(user, (err) => {
+            if (err) throw err;
+            res.status(200).json({loggedInUser: req.user, message: "user authenticated successfully" });
+            console.log(req.user);
+          });
+        }
+      })(req, res, next);
+   } catch (error) {
+      res.status(400).json(error);
+   }
 };
 
 export const signup = (req, res) => {

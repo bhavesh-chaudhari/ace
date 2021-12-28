@@ -24,26 +24,19 @@ const SignUp = () => {
     e.preventDefault();
     setformErrors(validate(formValues));
     setIsSubmit(true);
-    console.log(formValues)
-    if(formErrors.length === 0 ){
+    console.log(Object.keys(formErrors));
+    if(Object.keys(formErrors).length === 0){
       axios({
         method: "POST",
         data: formValues,
         url: "http://localhost:5000/api/v1/auth/signup",
         withCredentials: true
-      }).then((res)=>console.log(res))
+      }).then((res)=>{
+        console.log(res)
+      })
     }
     
   };
-
-  useEffect(() => {
-    // console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-      setformErrors(validate(formValues));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formErrors]);
 
   const validate = (values) => {
     const error = {};

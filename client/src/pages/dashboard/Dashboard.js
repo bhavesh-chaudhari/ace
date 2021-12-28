@@ -1,25 +1,27 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
 import { useGlobalContext } from '../../context/appContext'
 import "./Dashboard.css"
 import rewardImage from "./assets/reward.png"
+import userImage from "./assets/user.png"
 
 const Dashboard = () => {
 
     const {user} = useGlobalContext()
     console.log(user)
-   
+
     return (
       <div className="dashboard-container">
         <div className="dashboard-user-details">
           <div className="dashboard-user-profile">
             <div className="profile">
               <div className="profile-image">
-                <img
-                  src={user?.image}
-                  alt={`${user?.name}'s image`}
-                />
+                {user?.image ? (
+                  <img src={user?.image} alt={`${user?.name}'s image`} />
+                ) : (
+                  <img src={userImage} alt={`user image`} />
+                )}
               </div>
               <div className="profile-details">
                 <h2>{user?.name}</h2>
