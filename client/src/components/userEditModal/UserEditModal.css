@@ -1,0 +1,117 @@
+.user-edit-modal-container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.user-edit-modal-content{
+    margin-top: 6rem;
+    width: 90%;
+    background: white;
+    min-height: 400px;
+    max-width: 620px;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    position: relative;
+    border-radius: 8px;
+}
+
+.detail-container{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.detail-container .image-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+
+.image-container button{
+    background: #ECECEC;
+    border: none;
+    border: 1px solid #BBBBBB;
+    padding: 2px 5px;
+    cursor: pointer;
+}
+
+.detail-container .detail-fields{
+    width: 55%;
+}
+
+.detail-container .image-container div, .detail-container .image-container img{
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    width: 120px;
+    height: 120px;
+}
+
+.detail-fields > div{
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-fields label{
+    color: #535353;
+}
+
+.detail-fields input{
+    max-width: 250px;
+    border: 1px solid #BBBBBB;
+    background: #ECECEC;
+}
+
+.save-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.save-btn button{
+    background: #F7C08A;
+    padding: 5px 8px;
+    font-family: "Raleway";
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border: none;
+    cursor: pointer;
+}
+
+.close-btn{
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+@media screen and (max-width:500px) {
+    .detail-container{
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+    .detail-container .image-container{
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+    .detail-container .detail-fields{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .detail-fields input{
+        min-width: 280px;
+        font-size: 0.8rem;
+    }
+}

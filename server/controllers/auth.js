@@ -5,21 +5,26 @@ import passport from "passport";
 const CLIENT_URL = "http://localhost:3000/register";
 
 export const login = (req, res, next) => {
-   try {
-      passport.authenticate("local", (err, user) => {
-        if (err) throw err;
-        if (!user) res.status(400).json({ message: "no such user exists" });
-        else {
-          req.login(user, (err) => {
-            if (err) throw err;
-            res.status(200).json({loggedInUser: req.user, message: "user authenticated successfully" });
-            console.log(req.user);
-          });
-        }
-      })(req, res, next);
-   } catch (error) {
-      res.status(400).json(error);
-   }
+  try {
+    passport.authenticate("local", (err, user) => {
+      if (err) throw err;
+      if (!user) res.status(400).json({ message: "no such user exists" });
+      else {
+        req.login(user, (err) => {
+          if (err) throw err;
+          res
+            .status(200)
+            .json({
+              loggedInUser: req.user,
+              message: "user authenticated successfully",
+            });
+          console.log(req.user);
+        });
+      }
+    })(req, res, next);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };
 
 export const signup = (req, res) => {
@@ -32,7 +37,7 @@ export const signup = (req, res) => {
       },
       async (err, user) => {
         if (err) throw err;
-        if (user) res.send("User Already Exists");
+        if (user) res.status(409).json({ message: "user already exists" });
         if (!user) {
           const hashedPassword = await bcrypt.hash(req.body.password, 10);
           const newUser = new User({
@@ -42,7 +47,14 @@ export const signup = (req, res) => {
             password: hashedPassword,
           });
           await newUser.save();
-          res.send("user created");
+          req.login(newUser, (err) => {
+            if (err) throw err;
+            res.status(200).json({
+              loggedInUser: newUser,
+              message: "user created",
+            });
+            console.log(req.user);
+          });
         }
       }
     );

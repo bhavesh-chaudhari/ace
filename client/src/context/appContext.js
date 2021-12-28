@@ -1,6 +1,11 @@
 import axios from "axios";
 import React, { useContext, useEffect, useReducer } from "react";
-import { SET_LOADING, SET_USER, LOGIN_USER_SUCCESS } from "./actions";
+import {
+  SET_LOADING,
+  SET_USER,
+  LOGIN_USER_SUCCESS,
+  SIGNUP_USER_SUCCESS,
+} from "./actions";
 import reducer from "./reducer";
 import { useNavigate } from "react-router-dom";
 
@@ -33,8 +38,35 @@ const AppProvider = ({ children }) => {
       }).then((res) => {
         if (res.status === 200) {
           console.log(res);
-          console.log(res.loggedInUser);
-          dispatch({ type: LOGIN_USER_SUCCESS, payload: res.data.loggedInUser });
+          console.log(res.data.loggedInUser);
+          dispatch({
+            type: LOGIN_USER_SUCCESS,
+            payload: res.data.loggedInUser,
+          });
+          navigate("/dashboard");
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const signup = async (userInput) => {
+    setLoading();
+    try {
+      axios({
+        method: "POST",
+        data: userInput,
+        url: "http://localhost:5000/api/v1/auth/signup",
+        withCredentials: true,
+      }).then((res) => {
+        if (res.status === 200) {
+          console.log(res);
+          console.log(res.data.loggedInUser);
+          dispatch({
+            type: SIGNUP_USER_SUCCESS,
+            payload: res.data.loggedInUser,
+          });
           navigate("/dashboard");
         }
       });
@@ -44,20 +76,18 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    axios({
-      method: "GET",
-      withCredentials: true,
-      url: `${BASE_URL}/auth/authenticatedUser`,
-    }).then((res) => {
-      const loggedInUser = res.data.loggedInUser;
-      if (loggedInUser) {
+      axios({
+        method: "GET",
+        withCredentials: true,
+        url: `${BASE_URL}/auth/authenticatedUser`,
+      }).then((res) => {
+        const loggedInUser = res.data.loggedInUser;
         dispatch({ type: SET_USER, payload: loggedInUser });
-      }
-    });
+      });
   }, []);
 
   return (
-    <AppContext.Provider value={{ ...state, setLoading, login }}>
+    <AppContext.Provider value={{ ...state, setLoading, login, signup }}>
       {children}
     </AppContext.Provider>
   );

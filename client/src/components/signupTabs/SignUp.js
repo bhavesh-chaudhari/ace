@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "./form.css";
-import axios from "axios"
+import { useGlobalContext } from "../../context/appContext";
+import "./form.css"
 
 const SignUp = () => {
   const initialValues = {
@@ -10,6 +10,9 @@ const SignUp = () => {
     password: "",
     cnfmpass: "",
   };
+
+  const {signup} = useGlobalContext()
+
   const [formValues, setformValues] = useState(initialValues);
   const [formErrors, setformErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -25,18 +28,14 @@ const SignUp = () => {
     setformErrors(validate(formValues));
     setIsSubmit(true);
     console.log(Object.keys(formErrors));
-    if(Object.keys(formErrors).length === 0){
-      axios({
-        method: "POST",
-        data: formValues,
-        url: "http://localhost:5000/api/v1/auth/signup",
-        withCredentials: true
-      }).then((res)=>{
-        console.log(res)
-      })
-    }
-    
   };
+
+  useEffect(async () => {
+    console.log("lol isSubmit signup");
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      signup(formValues);
+    }
+  }, [isSubmit]);
 
   const validate = (values) => {
     const error = {};
@@ -129,7 +128,7 @@ const SignUp = () => {
         </button>
         <br />
         <br />
-        <button onClick={googleLogin} className="formbutton">
+        <button type="button" onClick={googleLogin} className="formbutton">
           <i className="fab fa-google fa-lg"></i>
           <span className="sign">Sign Up using google</span>
         </button>
