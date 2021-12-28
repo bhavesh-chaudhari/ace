@@ -70,6 +70,5 @@ export const googleCallback = (req, res) => {
 
 export const logout = (req, res) => {
   req.logout();
-  console.log("user is", req.user);
   res.redirect(CLIENT_URL);
 };

@@ -1,4 +1,4 @@
-import {SET_LOADING, SET_USER, LOGIN_USER_SUCCESS, SIGNUP_USER_SUCCESS} from "./actions"
+import {SET_LOADING, SET_USER, LOGIN_USER_SUCCESS, SIGNUP_USER_SUCCESS, EDIT_USER_SUCCESS} from "./actions"
 
 const reducer = (state, action) =>{
     switch (action.type) {
@@ -9,6 +9,8 @@ const reducer = (state, action) =>{
         case LOGIN_USER_SUCCESS:
             return {...state, isLoading: false, user: action.payload}
         case SIGNUP_USER_SUCCESS:
+            return {...state, isLoading: false, user: action.payload}
+        case EDIT_USER_SUCCESS:
             return {...state, isLoading: false, user: action.payload}
         default:
             return state;

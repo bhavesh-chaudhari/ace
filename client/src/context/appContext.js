@@ -5,6 +5,7 @@ import {
   SET_USER,
   LOGIN_USER_SUCCESS,
   SIGNUP_USER_SUCCESS,
+  EDIT_USER_SUCCESS,
 } from "./actions";
 import reducer from "./reducer";
 import { useNavigate } from "react-router-dom";
@@ -52,9 +53,10 @@ const AppProvider = ({ children }) => {
   };
 
   const signup = async (userInput) => {
+    console.log(userInput)
     setLoading();
     try {
-      axios({
+      await axios({
         method: "POST",
         data: userInput,
         url: "http://localhost:5000/api/v1/auth/signup",
@@ -75,19 +77,42 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-      axios({
-        method: "GET",
+  const editUser = async (editValues) => {
+    setLoading();
+    console.log(editValues.id)
+    try {
+      await axios({
+        method: "PATCH",
+        data: editValues,
+        url: `http://localhost:5000/api/v1/users/${editValues.id}`,
         withCredentials: true,
-        url: `${BASE_URL}/auth/authenticatedUser`,
       }).then((res) => {
-        const loggedInUser = res.data.loggedInUser;
-        dispatch({ type: SET_USER, payload: loggedInUser });
+        if (res.status === 200) {
+          console.log(res);
+          dispatch({
+            type: EDIT_USER_SUCCESS,
+            payload: res.data.user
+          });
+        }
       });
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      withCredentials: true,
+      url: `${BASE_URL}/auth/authenticatedUser`,
+    }).then((res) => {
+      const loggedInUser = res.data.loggedInUser;
+      dispatch({ type: SET_USER, payload: loggedInUser });
+    });
   }, []);
 
   return (
-    <AppContext.Provider value={{ ...state, setLoading, login, signup }}>
+    <AppContext.Provider value={{ ...state, setLoading, login, signup, editUser }}>
       {children}
     </AppContext.Provider>
   );

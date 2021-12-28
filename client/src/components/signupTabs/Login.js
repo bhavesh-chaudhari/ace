@@ -58,9 +58,7 @@ const Login = () => {
           name="email"
           id="email"
           value={formValues.email}
-          onChange={(e) =>
-            setformValues({ ...formValues, email: e.target.value })
-          }
+          onChange={handleChange}
         />
         <p className="error">{formErrors.email}</p>
         <br />
