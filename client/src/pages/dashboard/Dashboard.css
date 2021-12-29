@@ -1,92 +1,112 @@
-.dashboard-container{
-    margin-top: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.dashboard-container {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.dashboard-user-details{
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    margin-top: 3rem;
+.dashboard-user-details {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-top: 3rem;
 }
 
-.dashboard-user-profile{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-family: "Raleway", sans-serif;
+.dashboard-user-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Raleway", sans-serif;
 }
 
-.dashboard-user-profile .profile{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.dashboard-user-profile .profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.dashboard-user-profile .profile img{
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    margin-right: 2rem;
+.profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-right: 2rem;
 }
 
-.profile-details h2, .profile-details h3{
-    line-height: 2rem;
-    font-weight: lighter;
+.profile-details h2,
+.profile-details h3 {
+  line-height: 2rem;
+  font-weight: lighter;
 }
 
-.profile-details h2{
-    font-weight: bolder;
+.profile-details h2 {
+  font-weight: bolder;
 }
 
-.profile-details button{
-    padding: 5px;
-    background: #F7C08A;
-    border-radius: 3px;
-    margin-top: 2rem;
+.profile-details button {
+  padding: 5px;
+  background: #f7c08a;
+  border-radius: 3px;
+  margin-top: 2rem;
+  border: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  cursor: pointer;
 }
 
-.user-rewards{
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    font-family: "Work Sans", sans-serif;
-    font-weight: lighter;
+.user-rewards {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Work Sans", sans-serif;
+  font-weight: lighter;
 }
 
-.rewards-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    text-align: center;
+.rewards-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  min-height: 220px;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: rgba(222, 222, 231, 0.25) 0px 30px 60px -12px inset, rgba(143, 118, 118, 0.3) 0px 18px 36px -18px inset;
 }
 
-.user-rewards h1{
-    font-family: "Work Sans", sans-serif;
+.user-rewards h1 {
+  font-family: "Work Sans", sans-serif;
 }
 
-.reward-images{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.reward-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.reward-images img{
-    border-radius: 50%;
+.reward-images img {
+  border-radius: 50%;
 }
 
-.reward-images > img:nth-child(1){
-    transform: translate(20%, 5%);
+.reward-images > img:nth-child(1) {
+  transform: translate(20%, 5%);
 }
 
-.reward-images > img:nth-child(2){
-    transform: translate(-40%, -5%)
+.reward-images > img:nth-child(2) {
+  transform: translate(-40%, -5%);
+}
+
+.user-edit-modal {
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  width: 100%;
 }

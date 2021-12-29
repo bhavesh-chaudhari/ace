@@ -4,6 +4,7 @@ import cors from "cors";
 import CONNECT_DB from "./db/connect.js";
 import eventsRouter from "./routes/events.js";
 import authRouter from "./routes/auth.js";
+import userRouter from "./routes/users.js"
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import passport from "passport";
@@ -50,6 +51,7 @@ app.get("/", (req, res)=>{
 
 app.use("/api/v1/events", ensureAuth, eventsRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/users", userRouter)
 
 // read environment variables from .env
 const PORT = process.env.PORT || 5000;

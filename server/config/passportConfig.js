@@ -32,7 +32,6 @@ const passportStrategy = (passport) => {
             user = await User.create(newUser)
             done(null, user)
           }
-          
         } catch (error) {
           console.error(error)
         }
