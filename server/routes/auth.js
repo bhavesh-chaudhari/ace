@@ -24,6 +24,9 @@ router.get("/authenticatedUser", (req, res) => {
   if(req.user){
     res.status(200).json({ loggedInUser: req.user });
   }
+  else{
+    res.status(404).json({message: "no logged in user"})
+  }
 });
 
 router.get("/logout", logout);

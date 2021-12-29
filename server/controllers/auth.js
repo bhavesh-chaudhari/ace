@@ -18,7 +18,7 @@ export const login = (req, res, next) => {
               loggedInUser: req.user,
               message: "user authenticated successfully",
             });
-          console.log(req.user);
+          // console.log(req.user);
         });
       }
     })(req, res, next);
@@ -29,7 +29,7 @@ export const login = (req, res, next) => {
 
 export const signup = (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
 
     User.findOne(
       {
@@ -53,7 +53,7 @@ export const signup = (req, res) => {
               loggedInUser: newUser,
               message: "user created",
             });
-            console.log(req.user);
+            // console.log(req.user);
           });
         }
       }
@@ -64,7 +64,7 @@ export const signup = (req, res) => {
 };
 
 export const googleCallback = (req, res) => {
-  console.log("user is", req.user);
+  // console.log("user is", req.user);
   res.redirect("http://localhost:3000/dashboard");
 };
 

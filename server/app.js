@@ -13,7 +13,7 @@ import { ensureAuth, ensureGuest } from "./middlewares/auth.js";
 
 // initialize app
 const app = express();
-app.use(express.json());
+app.use(express.json({limit: "5mb"}));
 
 // configure dotenv
 dotenv.config({ path: "./config/.env" });

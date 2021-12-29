@@ -9,12 +9,19 @@
     position: fixed;
     width: 100%;
     top: 0;
+    z-index: 100;
 }
 
 .navbar{
     display: flex;
     justify-content: space-between;
     width: 95%;
+}
+
+.navbar-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navbar-links ul{
@@ -44,22 +51,28 @@
     position: relative;
     background: #C5C5C5;
     border-radius: 3px;
-    width: 50px;
-    padding: 2px 0;
+    width: 60px;
+    min-height: 1.8rem;
 }
 
 .navbar-profile .user-profile{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 35px;
     cursor: pointer;
+    width: 80%;
 }
 
 .arrow-svg, .user-svg{
     transform: scale(0.95);
     transition: all 0.2s ease;
     fill: black;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
 }
 
 .arrow-svg.open{
@@ -69,6 +82,7 @@
 .login-signup-menu{
     background: white;
     position: absolute;
+    top: 6px;
     right: -10px;
     padding: 0.5rem 0.8rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -91,9 +105,17 @@
     list-style-type: none;
 }
 
+.login-signup-menu a{
+    margin-bottom: 0.4rem;
+    cursor: pointer;
+}
+
 .login-signup-menu ul li{
-    margin-bottom: 0.5rem;
     color: #000000;
+}
+
+.login-signup-menu ul li:hover{
+    color: rgb(82, 79, 79);
 }
 
 .main-menu > ul:nth-child(1) > a:nth-child(1) > li:nth-child(1){
@@ -108,14 +130,20 @@
 
 .login-signup-menu .menu-arrow{
     position: absolute;
-    right: 10px;
     top: 0;
+    right: 12px;
     z-index: 1000;
     transform: rotateZ(180deg) translate(7px, 10px) scale(1.5);
 }
 
 .login-signup-menu .menu-arrow svg path{
     fill: white;
+}
+
+.show-dashboard-navbar{
+    background: #C5C5C5;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 @media screen and (max-width:500px) {

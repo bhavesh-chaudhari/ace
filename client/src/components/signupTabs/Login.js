@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../../context/appContext";
+import {PulseLoader} from "react-spinners"
 
 const Login = () => {
   const initialValues = { email: "", password: "" };
@@ -7,7 +8,7 @@ const Login = () => {
   const [formErrors, setformErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const {login} = useGlobalContext()
+  const {login, isLoading} = useGlobalContext()
 
   const handleChange = (e) => {
     const { name, value } = e.target;

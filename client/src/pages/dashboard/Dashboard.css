@@ -30,18 +30,21 @@
 .profile-image {
   width: 200px;
   height: 200px;
+  min-width: 200px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-content: center;
   margin-right: 2rem;
+  background: chartreuse;
 }
 
 .profile-details h2,
 .profile-details h3 {
   line-height: 2rem;
   font-weight: lighter;
+  font-family: "Work Sans";
 }
 
 .profile-details h2 {
@@ -54,12 +57,13 @@
   border-radius: 3px;
   margin-top: 2rem;
   border: none;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   cursor: pointer;
 }
 
 .user-rewards {
-  width: 40%;
+  width: 45%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -74,15 +78,25 @@
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  min-height: 220px;
+  min-height: 230px;
   text-align: center;
   padding: 1rem;
-  border-radius: 10px;
+  /* border-radius:  */
   box-shadow: rgba(222, 222, 231, 0.25) 0px 30px 60px -12px inset, rgba(143, 118, 118, 0.3) 0px 18px 36px -18px inset;
+  border-radius: 20px;
 }
 
 .user-rewards h1 {
   font-family: "Work Sans", sans-serif;
+  letter-spacing: 1px;
+}
+
+.user-rewards h2 {
+  font-weight: lighter;
+}
+
+.user-rewards h2 span {
+  color: orange;
 }
 
 .reward-images {
@@ -109,4 +123,22 @@
   position: fixed;
   top: 0;
   width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+  .dashboard-user-details {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .dashboard-user-profile {
+    margin-bottom: 2rem;
+  }
+  .dashboard-user-profile .profile {
+    flex-direction: column;
+    text-align: center;
+  }
+  .profile-image {
+    margin-right: 0;
+  }
 }
