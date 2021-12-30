@@ -1,8 +1,12 @@
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import passport from "passport";
+import jwt from "jsonwebtoken"
+import dotenv from "dotenv"
 
+dotenv.config({ path: "./config/.env" })
 const CLIENT_URL = "http://localhost:3000/register";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export const login = (req, res, next) => {
   try {
@@ -12,12 +16,10 @@ export const login = (req, res, next) => {
       else {
         req.login(user, (err) => {
           if (err) throw err;
-          res
-            .status(200)
-            .json({
-              loggedInUser: req.user,
-              message: "user authenticated successfully",
-            });
+          res.status(200).json({
+            loggedInUser: req.user,
+            message: "user authenticated successfully",
+          });
           // console.log(req.user);
         });
       }
@@ -29,8 +31,6 @@ export const login = (req, res, next) => {
 
 export const signup = (req, res) => {
   try {
-    // console.log(req.body);
-
     User.findOne(
       {
         email: req.body.email,
@@ -72,3 +72,35 @@ export const logout = (req, res) => {
   req.logout();
   res.redirect(CLIENT_URL);
 };
+
+export const forgotPassword = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      res.status(404).json({ message: "user is not registered" });
+      return;
+    }
+
+    // user exists and now create a One Time Link for 10 minutes
+    const secret = JWT_SECRET + user.password;
+    const payload = {
+      email: user.email,
+      id: user._id,
+    };
+
+    console.log(secret)
+
+    const token = jwt.sign(payload, secret, { expiresIn: "15m" });
+
+    const link = `http://localhost:3000/reset-password/${user._id}/${token}`;
+    console.log(link);
+
+    res.status(200).json({ message: "Password reset link has been sent to your email" });
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
+export const resetPassword = (req, res, next) => {};

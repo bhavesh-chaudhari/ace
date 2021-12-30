@@ -21,6 +21,7 @@ const Registration = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            background: "#4e4e4e",
           }}
         >
           <MoonLoader color="orange" size={80}></MoonLoader>

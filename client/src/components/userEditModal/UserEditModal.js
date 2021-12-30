@@ -45,7 +45,7 @@ const UserEditModal = () => {
             {user?.image ? (
               <img src={editValues.image} alt={`${editValues.name}'s image`} />
             ) : (
-              <Avatar size="120px" name={user?.name}></Avatar>
+              <Avatar size="120px" src={editValues.image} name={user?.name}></Avatar>
             )}
             <label htmlFor="files">Choose an Image</label>
             <input style={{display:"none"}} id="files" onChange={fileSelectHandler} type="file" accept="image/*" ></input>

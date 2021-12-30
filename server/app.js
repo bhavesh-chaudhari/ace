@@ -18,6 +18,8 @@ app.use(express.json({limit: "5mb"}));
 // configure dotenv
 dotenv.config({ path: "./config/.env" });
 
+// console.log(dotenv.config({ path: "./config/.env" }));
+
 // cors
 app.use(
   cors({
