@@ -1,16 +1,14 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Navigate } from "react-router-dom";
 import { useGlobalContext } from "../../context/appContext";
 
 const PrivateRoute = ({ children }) => {
-  const { user } = useGlobalContext();
+  const { user, isLoading} = useGlobalContext();
 
   return user ? (
     children
   ) : (
-    <>
-      <Navigate to="/register"></Navigate>
-    </>
+    <><Navigate to="/register"></Navigate></>
   );
 };
 

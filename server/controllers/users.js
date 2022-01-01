@@ -11,6 +11,7 @@ export const getAllUsers = async (req, res) =>{
 }
 
 export const updateUser = async (req, res)=>{
+
     const user = await User.findOneAndUpdate({ _id: req.params.id }, req.body, {
       new: true,
       runValidators: true,

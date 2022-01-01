@@ -3,9 +3,10 @@ import "./UserEditModal.css";
 import Avatar from "react-avatar";
 import { useGlobalContext } from "../../context/appContext";
 import { AiFillCloseCircle } from "react-icons/ai";
+import {PulseLoader} from "react-spinners"
 
-const UserEditModal = ({ setIsOpen }) => {
-  const { user, editUser } = useGlobalContext();
+const UserEditModal = () => {
+  const { user, editUser, isLoading, openModal} = useGlobalContext();
   const initialValues = {
     name: user?.name,
     email: user?.email,
@@ -20,6 +21,16 @@ const UserEditModal = ({ setIsOpen }) => {
     setEditValues({ ...editValues, [name]: value });
   };
 
+  const fileSelectHandler = (e)=>{
+    const reader = new FileReader()
+    reader.onload = ()=>{
+      if(reader.readyState === 2){
+        setEditValues({...editValues, image: reader.result})
+      }
+    }
+    reader.readAsDataURL(e.target.files[0])
+  }
+
   const saveInfo = (e)=>{
     e.preventDefault()
     console.log(editValues)
@@ -32,12 +43,12 @@ const UserEditModal = ({ setIsOpen }) => {
         <div className="detail-container">
           <div className="image-container">
             {user?.image ? (
-              <img src={user?.image} alt="" />
+              <img src={editValues.image} alt={`${editValues.name}'s image`} />
             ) : (
-              <Avatar size="120px" name={user?.name}></Avatar>
+              <Avatar size="120px" src={editValues.image} name={user?.name}></Avatar>
             )}
             <label htmlFor="files">Choose an Image</label>
-            <input style={{display:"none"}} id="files" type="file" ></input>
+            <input style={{display:"none"}} id="files" onChange={fileSelectHandler} type="file" accept="image/*" ></input>
           </div>
           <div className="detail-fields">
             <div className="field">
@@ -65,7 +76,7 @@ const UserEditModal = ({ setIsOpen }) => {
               <input
                 value={editValues.contactNumber}
                 name="contactNumber"
-                type="text"
+                type="number"
                 id="contactNumber"
                 onChange={handleChange}
               />
@@ -73,9 +84,11 @@ const UserEditModal = ({ setIsOpen }) => {
           </div>
         </div>
         <div className="save-btn">
-          <button type="submit" >SAVE</button>
+          <button type="submit" >{
+            isLoading ? <PulseLoader size={5}></PulseLoader> : "SAVE"
+          }</button>
         </div>
-        <div onClick={() => setIsOpen(false)} className="close-btn">
+        <div onClick={() => openModal(false)} className="close-btn">
           <AiFillCloseCircle color="#F7C08A"></AiFillCloseCircle>
         </div>
       </form>

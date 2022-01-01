@@ -6,6 +6,7 @@ import {
   LOGIN_USER_SUCCESS,
   SIGNUP_USER_SUCCESS,
   EDIT_USER_SUCCESS,
+  OPEN_MODAL
 } from "./actions";
 import reducer from "./reducer";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 const initialState = {
   user: null,
   isLoading: false,
+  isModalOpen: false
 };
 
 const AppContext = React.createContext();
@@ -24,12 +26,16 @@ const AppProvider = ({ children }) => {
 
   const BASE_URL = "http://localhost:5000/api/v1";
 
-  const setLoading = () => {
-    dispatch({ type: SET_LOADING });
+  const setLoading = (value) => {
+    dispatch({ type: SET_LOADING, payload: value});
   };
 
+  const openModal = (value)=>{
+    dispatch({type: OPEN_MODAL, payload: value})
+  }
+
   const login = async (userInput) => {
-    setLoading();
+    setLoading(true)
     try {
       await axios({
         method: "POST",
@@ -49,12 +55,13 @@ const AppProvider = ({ children }) => {
       });
     } catch (error) {
       console.log(error);
+      setLoading(false)
     }
   };
 
   const signup = async (userInput) => {
     console.log(userInput)
-    setLoading();
+    setLoading(true);
     try {
       await axios({
         method: "POST",
@@ -74,11 +81,12 @@ const AppProvider = ({ children }) => {
       });
     } catch (error) {
       console.log(error);
+      setLoading(false)
     }
   };
 
   const editUser = async (editValues) => {
-    setLoading();
+    setLoading(true);
     console.log(editValues.id)
     try {
       await axios({
@@ -93,6 +101,7 @@ const AppProvider = ({ children }) => {
             type: EDIT_USER_SUCCESS,
             payload: res.data.user
           });
+          openModal(false)
         }
       });
     } catch (error) {
@@ -100,19 +109,26 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    axios({
-      method: "GET",
-      withCredentials: true,
-      url: `${BASE_URL}/auth/authenticatedUser`,
-    }).then((res) => {
-      const loggedInUser = res.data.loggedInUser;
-      dispatch({ type: SET_USER, payload: loggedInUser });
-    });
+  useEffect(async () => {
+    setLoading(true)
+   try {
+      await axios({
+        method: "GET",
+        withCredentials: true,
+        url: `${BASE_URL}/auth/authenticatedUser`,
+      }).then((res) => {
+        console.log(res);
+        const loggedInUser = res.data.loggedInUser;
+        dispatch({ type: SET_USER, payload: loggedInUser });
+      });
+   } catch (error) {
+     console.log(error)
+     setLoading(false)
+   }
   }, []);
 
   return (
-    <AppContext.Provider value={{ ...state, setLoading, login, signup, editUser }}>
+    <AppContext.Provider value={{ ...state, setLoading, login, signup, editUser, openModal }}>
       {children}
     </AppContext.Provider>
   );

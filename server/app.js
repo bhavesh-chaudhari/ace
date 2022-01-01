@@ -13,10 +13,12 @@ import { ensureAuth, ensureGuest } from "./middlewares/auth.js";
 
 // initialize app
 const app = express();
-app.use(express.json());
+app.use(express.json({limit: "5mb"}));
 
 // configure dotenv
 dotenv.config({ path: "./config/.env" });
+
+// console.log(dotenv.config({ path: "./config/.env" }));
 
 // cors
 app.use(
@@ -51,7 +53,7 @@ app.get("/", (req, res)=>{
 
 app.use("/api/v1/events", ensureAuth, eventsRouter);
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/users", userRouter)
+app.use("/api/v1/users", ensureAuth, userRouter)
 
 // read environment variables from .env
 const PORT = process.env.PORT || 5000;

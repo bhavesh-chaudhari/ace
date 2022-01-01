@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../../context/appContext";
+import {Link} from "react-router-dom"
 
 const Login = () => {
   const initialValues = { email: "", password: "" };
@@ -7,7 +8,7 @@ const Login = () => {
   const [formErrors, setformErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const {login} = useGlobalContext()
+  const {login, isLoading} = useGlobalContext()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -77,7 +78,9 @@ const Login = () => {
           Login
         </button>
         <br />
-        <div className="forgot-pass">Forget Password?</div>
+        <div className="forgot-pass">
+          <Link to="/forgot-password" >Forget Password?</Link>
+        </div>
         <br />
         <br />
         <br />

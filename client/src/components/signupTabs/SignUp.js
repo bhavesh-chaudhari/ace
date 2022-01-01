@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../../context/appContext";
+import { PulseLoader } from "react-spinners";
 import "./form.css"
 
 const SignUp = () => {
@@ -11,7 +12,7 @@ const SignUp = () => {
     cnfmpass: "",
   };
 
-  const {signup} = useGlobalContext()
+  const {signup, isLoading} = useGlobalContext()
 
   const [formValues, setformValues] = useState(initialValues);
   const [formErrors, setformErrors] = useState({});
