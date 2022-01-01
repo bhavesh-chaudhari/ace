@@ -3,7 +3,7 @@ import axios from "axios"
 
 const ForgotPassword = () => {
 
-    const [email, setEmail] = useState()
+    const [email, setEmail] = useState("")
 
     // console.log(email)
     

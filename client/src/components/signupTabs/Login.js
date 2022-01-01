@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../../context/appContext";
-import {PulseLoader} from "react-spinners"
+import {Link} from "react-router-dom"
 
 const Login = () => {
   const initialValues = { email: "", password: "" };
@@ -78,7 +78,9 @@ const Login = () => {
           Login
         </button>
         <br />
-        <div className="forgot-pass">Forget Password?</div>
+        <div className="forgot-pass">
+          <Link to="/forgot-password" >Forget Password?</Link>
+        </div>
         <br />
         <br />
         <br />

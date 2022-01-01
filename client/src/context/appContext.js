@@ -55,6 +55,7 @@ const AppProvider = ({ children }) => {
       });
     } catch (error) {
       console.log(error);
+      setLoading(false)
     }
   };
 
@@ -80,6 +81,7 @@ const AppProvider = ({ children }) => {
       });
     } catch (error) {
       console.log(error);
+      setLoading(false)
     }
   };
 

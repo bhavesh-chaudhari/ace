@@ -53,7 +53,7 @@ app.get("/", (req, res)=>{
 
 app.use("/api/v1/events", ensureAuth, eventsRouter);
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/users", userRouter)
+app.use("/api/v1/users", ensureAuth, userRouter)
 
 // read environment variables from .env
 const PORT = process.env.PORT || 5000;
