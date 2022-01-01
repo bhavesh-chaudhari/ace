@@ -26,7 +26,7 @@ export const sendMail = async (mailTo, mailSubject, mailText, mailHtml) => {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: "explorerd515@gmail.com",
+        user: `${BUSSINESS_EMAIL}`,
         clientId: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
         refreshToken: REFRESH_TOKEN,

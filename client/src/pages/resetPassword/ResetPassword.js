@@ -12,7 +12,6 @@ const ResetPassword = () => {
   const [isValid, setIsValid] = useState(false);
   const [formValues, setFormValues] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const { id, token } = match.params;
 
   const handleChange = (e) => {
       const { name, value } = e.target;

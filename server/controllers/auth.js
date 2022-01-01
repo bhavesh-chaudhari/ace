@@ -59,9 +59,8 @@ export const signup = (req, res) => {
               "Registered successfully",
               "Thanks for connecting hands with ACE !",
               `<p> Thanks for connecting hands with ACE ! :)</p>`
-            )
-              .then((res) => console.log(res))
-              .catch((error) => console.log(error));
+            ).then(res=>console.log(res))
+            .catch(error=>console.log(error))
           });
         }
       }
@@ -81,7 +80,7 @@ export const logout = (req, res) => {
   res.redirect(CLIENT_URL);
 };
 
-export const forgotPassword = async (req, res, next) => {
+export const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email: email });
@@ -119,7 +118,12 @@ export const forgotPassword = async (req, res, next) => {
       Thanks !
     </h1>`;
 
-    sendMail(user.email, "ACE PASSWORD RESET LINK", mailText, mailHtml)
+    sendMail(
+      user.email,
+      "ACE PASSWORD RESET LINK",
+      mailText,
+      mailHtml
+    )
       .then((res) => console.log(res))
       .catch((error) => console.log(error));
 
@@ -152,7 +156,7 @@ export const checkUser = async (req, res) => {
   }
 };
 
-export const resetPassword = async (req, res, next) => {
+export const resetPassword = async (req, res) => {
   try {
     const newPassword = req.body.password;
 

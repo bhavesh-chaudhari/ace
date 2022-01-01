@@ -5,8 +5,6 @@ const ForgotPassword = () => {
 
     const [email, setEmail] = useState("")
 
-    // console.log(email)
-    
     const handleSubmit = async (e)=>{
         e.preventDefault();
         try {

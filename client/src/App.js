@@ -7,6 +7,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
 import ResetPassword from "./pages/resetPassword/ResetPassword";
+import NotFound from "./pages/notFound/NotFound";
 import Footer from "./components/footer/Footer";
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
     <>
       {!match && <Navbar></Navbar>}
       <Routes>
+        <Route path="*" element={<NotFound/>} ></Route>
         <Route path="/" element={<Home />}></Route>
         <Route path="/register" element={<Registration />}></Route>
         <Route
