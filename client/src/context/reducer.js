@@ -4,7 +4,9 @@ import {
   LOGIN_USER_SUCCESS,
   SIGNUP_USER_SUCCESS,
   EDIT_USER_SUCCESS,
-  OPEN_MODAL
+  OPEN_MODAL,
+  LOGOUT,
+  START_PROFILE_UPDATE
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -18,9 +20,13 @@ const reducer = (state, action) => {
     case SIGNUP_USER_SUCCESS:
       return { ...state, isLoading: false, user: action.payload };
     case EDIT_USER_SUCCESS:
-      return { ...state, isLoading: false, isModalOpen: false, user: action.payload };
+      return { ...state, profileIsUpdating: false , isModalOpen: false, user: action.payload };
     case OPEN_MODAL: 
       return {...state, isModalOpen: action.payload}
+    case LOGOUT:
+      return {...state, user: null, isLoading: false}
+    case START_PROFILE_UPDATE:
+      return {...state, profileIsUpdating: action.payload }
     default:
       return state;
   }

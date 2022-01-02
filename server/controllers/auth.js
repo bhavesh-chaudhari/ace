@@ -13,7 +13,7 @@ export const login = (req, res, next) => {
   try {
     passport.authenticate("local", (err, user) => {
       if (err) throw err;
-      if (!user) res.status(400).json({ message: "no such user exists" });
+      if (!user) res.status(404).json({ message: "no such user exists" });
       else {
         req.login(user, (err) => {
           if (err) throw err;
@@ -76,8 +76,13 @@ export const googleCallback = (req, res) => {
 };
 
 export const logout = (req, res) => {
-  req.logout();
-  res.redirect(CLIENT_URL);
+  try {
+    req.logout();
+  // res.redirect(CLIENT_URL);
+  res.status(200).json({message: "logged out successfully"})
+  } catch (error) {
+    res.status(400).json(error)
+  }
 };
 
 export const forgotPassword = async (req, res) => {

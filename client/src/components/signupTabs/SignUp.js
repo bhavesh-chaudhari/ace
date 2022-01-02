@@ -12,7 +12,7 @@ const SignUp = () => {
     cnfmpass: "",
   };
 
-  const {signup, isLoading} = useGlobalContext()
+  const {signup, googleLogin} = useGlobalContext()
 
   const [formValues, setformValues] = useState(initialValues);
   const [formErrors, setformErrors] = useState({});
@@ -64,10 +64,6 @@ const SignUp = () => {
     }
 
     return error;
-  };
-
-  const googleLogin = () => {
-    window.open("http://localhost:5000/api/v1/auth/google", "_self");
   };
 
   return (

@@ -6,7 +6,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import {PulseLoader} from "react-spinners"
 
 const UserEditModal = () => {
-  const { user, editUser, isLoading, openModal} = useGlobalContext();
+  const { user, editUser, profileIsUpdating, openModal} = useGlobalContext();
   const initialValues = {
     name: user?.name,
     email: user?.email,
@@ -85,7 +85,7 @@ const UserEditModal = () => {
         </div>
         <div className="save-btn">
           <button type="submit" >{
-            isLoading ? <PulseLoader size={5}></PulseLoader> : "SAVE"
+            profileIsUpdating ? <PulseLoader size={5}></PulseLoader> : "SAVE"
           }</button>
         </div>
         <div onClick={() => openModal(false)} className="close-btn">
