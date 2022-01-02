@@ -1,12 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Work+Sans:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Work+Sans:wght@300&display=swap");
 
 /* 
 ========================
 Reset basic css styles
 ========================
 */
-*{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --toastify-color-light: #333333;
+  --toastify-color-progress-light: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
+  --toastify-text-color-light: orange;
+}
+
+.Toastify__close-button > svg {
+    color: orange;
+    opacity: 1;
 }

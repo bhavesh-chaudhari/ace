@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { useGlobalContext } from "../../context/appContext";
 
 const PrivateRoute = ({ children }) => {
-  const { user, isLoading} = useGlobalContext();
+  const { user} = useGlobalContext();
 
   return user ? (
     children

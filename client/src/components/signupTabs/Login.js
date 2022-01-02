@@ -8,7 +8,7 @@ const Login = () => {
   const [formErrors, setformErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const {login, isLoading} = useGlobalContext()
+  const {login, googleLogin} = useGlobalContext()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,10 +22,6 @@ const Login = () => {
     setIsSubmit(true);
     console.log(isSubmit)
     console.log(Object.keys(formErrors).length);
-  };
-
-  const googleLogin = () => {
-    window.open("http://localhost:5000/api/v1/auth/google", "_self");
   };
 
   useEffect( async ()=>{

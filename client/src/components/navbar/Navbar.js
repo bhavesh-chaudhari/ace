@@ -7,11 +7,12 @@ import OutsideAlerter from "../outsideAlerter/OutsideAlerter";
 import { useGlobalContext } from "../../context/appContext";
 import Avatar from "react-avatar"
 import { ClipLoader } from "react-spinners";
+import { ToastContainer } from "react-toastify";
 
 const Navbar = () => {
   const [open, setIsOpen] = useState(false);
 
-  const { user, isLoading } = useGlobalContext();
+  const { user, isLoading, logout } = useGlobalContext();
 
   const match = useMatch("/dashboard")
 
@@ -19,10 +20,6 @@ const Navbar = () => {
 
   const close = () => {
     setIsOpen(false);
-  };
-
-  const logout = () => {
-    window.open("http://localhost:5000/api/v1/auth/logout", "_self");
   };
 
   return (

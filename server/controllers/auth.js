@@ -13,7 +13,7 @@ export const login = (req, res, next) => {
   try {
     passport.authenticate("local", (err, user) => {
       if (err) throw err;
-      if (!user) res.status(400).json({ message: "no such user exists" });
+      if (!user) res.status(404).json({ message: "no such user exists" });
       else {
         req.login(user, (err) => {
           if (err) throw err;
@@ -59,9 +59,8 @@ export const signup = (req, res) => {
               "Registered successfully",
               "Thanks for connecting hands with ACE !",
               `<p> Thanks for connecting hands with ACE ! :)</p>`
-            )
-              .then((res) => console.log(res))
-              .catch((error) => console.log(error));
+            ).then(res=>console.log(res))
+            .catch(error=>console.log(error))
           });
         }
       }
@@ -77,11 +76,16 @@ export const googleCallback = (req, res) => {
 };
 
 export const logout = (req, res) => {
-  req.logout();
-  res.redirect(CLIENT_URL);
+  try {
+    req.logout();
+  // res.redirect(CLIENT_URL);
+  res.status(200).json({message: "logged out successfully"})
+  } catch (error) {
+    res.status(400).json(error)
+  }
 };
 
-export const forgotPassword = async (req, res, next) => {
+export const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email: email });
@@ -119,7 +123,12 @@ export const forgotPassword = async (req, res, next) => {
       Thanks !
     </h1>`;
 
-    sendMail(user.email, "ACE PASSWORD RESET LINK", mailText, mailHtml)
+    sendMail(
+      user.email,
+      "ACE PASSWORD RESET LINK",
+      mailText,
+      mailHtml
+    )
       .then((res) => console.log(res))
       .catch((error) => console.log(error));
 
@@ -152,7 +161,7 @@ export const checkUser = async (req, res) => {
   }
 };
 
-export const resetPassword = async (req, res, next) => {
+export const resetPassword = async (req, res) => {
   try {
     const newPassword = req.body.password;
 

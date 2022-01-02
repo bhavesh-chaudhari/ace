@@ -129,9 +129,6 @@ i {
 }
 
 @media only screen and (max-width: 400px) {
-  .sign {
-    display: none;
-  }
   .head-form {
     width: 65%;
     font-size: 16px;

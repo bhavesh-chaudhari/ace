@@ -6,15 +6,19 @@ import {
   LOGIN_USER_SUCCESS,
   SIGNUP_USER_SUCCESS,
   EDIT_USER_SUCCESS,
-  OPEN_MODAL
+  OPEN_MODAL,
+  LOGOUT,
+  START_PROFILE_UPDATE
 } from "./actions";
 import reducer from "./reducer";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const initialState = {
   user: null,
   isLoading: false,
-  isModalOpen: false
+  isModalOpen: false,
+  profileIsUpdating: false
 };
 
 const AppContext = React.createContext();
@@ -27,15 +31,22 @@ const AppProvider = ({ children }) => {
   const BASE_URL = "http://localhost:5000/api/v1";
 
   const setLoading = (value) => {
-    dispatch({ type: SET_LOADING, payload: value});
+    dispatch({ type: SET_LOADING, payload: value });
   };
 
-  const openModal = (value)=>{
-    dispatch({type: OPEN_MODAL, payload: value})
-  }
+  // notifications
+  const notify = (notifications) => {
+    notifications.map((notification) => {
+      toast[notification.type](notification.message, {position: notification?.position, autoClose: notification?.autoClose});
+    });
+  };
+
+  const openModal = (value) => {
+    dispatch({ type: OPEN_MODAL, payload: value });
+  };
 
   const login = async (userInput) => {
-    setLoading(true)
+    setLoading(true);
     try {
       await axios({
         method: "POST",
@@ -51,16 +62,25 @@ const AppProvider = ({ children }) => {
             payload: res.data.loggedInUser,
           });
           navigate("/dashboard");
+          notify([
+            { message: "logged in successfully", type: "success" },
+            {
+              message: "Login Rewards : + 10 Coins 💰",
+              type: "info",
+              autoClose: false,
+            },
+          ]);
         }
       });
     } catch (error) {
+      notify([{ message: "Invalid Credentials", type: "error", position: "bottom-center"}]);
       console.log(error);
-      setLoading(false)
+      setLoading(false);
     }
   };
 
   const signup = async (userInput) => {
-    console.log(userInput)
+    console.log(userInput);
     setLoading(true);
     try {
       await axios({
@@ -77,17 +97,49 @@ const AppProvider = ({ children }) => {
             payload: res.data.loggedInUser,
           });
           navigate("/dashboard");
+          notify([{ message: "registered successfully", type: "success" }]);
+        }
+      });
+    } catch (error) {
+      notify([
+        { message: "Seems like there is an error ! Please Try Again", type: "error", position: "bottom-center" },
+      ]);
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+   const googleLogin = () => {
+     window.open("http://localhost:5000/api/v1/auth/google", "_self");
+   };
+
+  const logout = async () => {
+    setLoading(true);
+    try {
+      await axios({
+        method: "GET",
+        withCredentials: true,
+        url: "http://localhost:5000/api/v1/auth/logout",
+      }).then((res) => {
+        if (res.status === 200) {
+          console.log(res);
+          dispatch({ type: LOGOUT });
+          notify([{ message: "logged out", type: "success" }]);
         }
       });
     } catch (error) {
       console.log(error);
-      setLoading(false)
+      setLoading(false);
     }
   };
 
+  const startUpdating = (value)=>{
+    dispatch({type: START_PROFILE_UPDATE, payload: value})
+  }
+
   const editUser = async (editValues) => {
-    setLoading(true);
-    console.log(editValues.id)
+    startUpdating(true);
+    console.log(editValues.id);
     try {
       await axios({
         method: "PATCH",
@@ -99,19 +151,20 @@ const AppProvider = ({ children }) => {
           console.log(res);
           dispatch({
             type: EDIT_USER_SUCCESS,
-            payload: res.data.user
+            payload: res.data.user,
           });
-          openModal(false)
+          openModal(false);
+          notify([{ message: "Profile Updated Successfully !", type: "success" }]);
         }
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
   useEffect(async () => {
-    setLoading(true)
-   try {
+    setLoading(true);
+    try {
       await axios({
         method: "GET",
         withCredentials: true,
@@ -121,14 +174,26 @@ const AppProvider = ({ children }) => {
         const loggedInUser = res.data.loggedInUser;
         dispatch({ type: SET_USER, payload: loggedInUser });
       });
-   } catch (error) {
-     console.log(error)
-     setLoading(false)
-   }
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
   }, []);
 
   return (
-    <AppContext.Provider value={{ ...state, setLoading, login, signup, editUser, openModal }}>
+    <AppContext.Provider
+      value={{
+        ...state,
+        setLoading,
+        login,
+        signup,
+        editUser,
+        openModal,
+        notify,
+        logout,
+        googleLogin
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
